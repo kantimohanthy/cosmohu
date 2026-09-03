@@ -1,0 +1,200 @@
+{
+  "benchmark_execution_timestamp": "2026-09-02T23:27:09.734600",
+  "total_documents": 15,
+  "total_chunks": 15,
+  "average_chunks_per_document": 1.0,
+  "orphan_chunks": 0,
+  "cross_document_chunks": 0,
+  "invalid_chunk_provenance": 0,
+  "benchmark_propositions_count": 20,
+  "positive_propositions_count": 15,
+  "negative_propositions_count": 5,
+  "recall_at_1": 0.333,
+  "recall_at_3": 0.8,
+  "recall_at_5": 0.867,
+  "recall_at_10": 1.0,
+  "mrr": 0.558,
+  "zero_gold_retrievals": 0,
+  "items": [
+    {
+      "prop_id": "P01_PLD_REUSABLE",
+      "entity": "pld",
+      "predicate": "develops",
+      "object": "reusable_launch_vehicle",
+      "type": "POSITIVE",
+      "gold_doc": "doc_pld_miura5_spec",
+      "retrieved_rank": 1
+    },
+    {
+      "prop_id": "P02_PLD_FINANCING",
+      "entity": "pld",
+      "predicate": "receives_financing",
+      "object": "eib_30m",
+      "type": "POSITIVE",
+      "gold_doc": "doc_pld_eib_finance",
+      "retrieved_rank": 2
+    },
+    {
+      "prop_id": "P03_PLD_ESA_BOOST",
+      "entity": "pld",
+      "predicate": "receives_support",
+      "object": "esa_boost",
+      "type": "POSITIVE",
+      "gold_doc": "doc_pld_esa_boost",
+      "retrieved_rank": 6
+    },
+    {
+      "prop_id": "P04_PLD_OPERATIONAL",
+      "entity": "pld",
+      "predicate": "operates",
+      "object": "reusable_fleet",
+      "type": "HARD_NEGATIVE",
+      "gold_doc": null,
+      "retrieved_rank": "NOT_RETRIEVED"
+    },
+    {
+      "prop_id": "P05_ISAR_SPECTRUM",
+      "entity": "isar",
+      "predicate": "develops",
+      "object": "spectrum_launcher",
+      "type": "POSITIVE",
+      "gold_doc": "doc_isar_spectrum_overview",
+      "retrieved_rank": 1
+    },
+    {
+      "prop_id": "P06_ISAR_FACILITY",
+      "entity": "isar",
+      "predicate": "operates_facility",
+      "object": "munich_hq",
+      "type": "POSITIVE",
+      "gold_doc": "doc_isar_prod_facility",
+      "retrieved_rank": 3
+    },
+    {
+      "prop_id": "P07_ISAR_MAIDEN",
+      "entity": "isar",
+      "predicate": "prepares_flight",
+      "object": "andoya_maiden",
+      "type": "POSITIVE",
+      "gold_doc": "doc_isar_news_maiden",
+      "retrieved_rank": 5
+    },
+    {
+      "prop_id": "P08_ISAR_REUSABLE",
+      "entity": "isar",
+      "predicate": "develops",
+      "object": "reusable_launch_vehicle",
+      "type": "HARD_NEGATIVE",
+      "gold_doc": null,
+      "retrieved_rank": "NOT_RETRIEVED"
+    },
+    {
+      "prop_id": "P09_RFA_ONE",
+      "entity": "rfa",
+      "predicate": "develops",
+      "object": "rfa_one",
+      "type": "POSITIVE",
+      "gold_doc": "doc_rfa_one_spec",
+      "retrieved_rank": 1
+    },
+    {
+      "prop_id": "P10_RFA_HOTFIRE",
+      "entity": "rfa",
+      "predicate": "completes_test",
+      "object": "first_stage_hotfire",
+      "type": "POSITIVE",
+      "gold_doc": "doc_rfa_hotfire",
+      "retrieved_rank": 6
+    },
+    {
+      "prop_id": "P11_RFA_STATUS",
+      "entity": "rfa",
+      "predicate": "prepares_flight",
+      "object": "saxavord_maiden",
+      "type": "POSITIVE",
+      "gold_doc": "doc_rfa_euro_news",
+      "retrieved_rank": 3
+    },
+    {
+      "prop_id": "P12_RFA_REUSABLE",
+      "entity": "rfa",
+      "predicate": "develops",
+      "object": "reusable_launch_vehicle",
+      "type": "HARD_NEGATIVE",
+      "gold_doc": null,
+      "retrieved_rank": "NOT_RETRIEVED"
+    },
+    {
+      "prop_id": "P13_ORBEX_PRIME",
+      "entity": "orbex",
+      "predicate": "develops",
+      "object": "prime_biolpg",
+      "type": "POSITIVE",
+      "gold_doc": "doc_orbex_prime_spec",
+      "retrieved_rank": 2
+    },
+    {
+      "prop_id": "P14_ORBEX_SPACEPORT",
+      "entity": "orbex",
+      "predicate": "constructs",
+      "object": "sutherland_spaceport",
+      "type": "POSITIVE",
+      "gold_doc": "doc_orbex_spaceport",
+      "retrieved_rank": 3
+    },
+    {
+      "prop_id": "P15_ORBEX_REUSABLE",
+      "entity": "orbex",
+      "predicate": "develops",
+      "object": "reusable_launch_vehicle",
+      "type": "HARD_NEGATIVE",
+      "gold_doc": null,
+      "retrieved_rank": "NOT_RETRIEVED"
+    },
+    {
+      "prop_id": "P16_MAIA_REUSABLE",
+      "entity": "maia",
+      "predicate": "develops",
+      "object": "maia_reusable_mini",
+      "type": "POSITIVE",
+      "gold_doc": "doc_maiaspace_reusable",
+      "retrieved_rank": 2
+    },
+    {
+      "prop_id": "P17_MAIA_COLIBRI",
+      "entity": "maia",
+      "predicate": "completes_test",
+      "object": "colibri_hotfire",
+      "type": "POSITIVE",
+      "gold_doc": "doc_maiaspace_colibri_test",
+      "retrieved_rank": 3
+    },
+    {
+      "prop_id": "P18_MAIA_REDIRECT",
+      "entity": "maia",
+      "predicate": "operates",
+      "object": "arianegroup_parent",
+      "type": "HARD_NEGATIVE",
+      "gold_doc": null,
+      "retrieved_rank": "NOT_RETRIEVED"
+    },
+    {
+      "prop_id": "P19_CROSS_PLD_ISAR",
+      "entity": "pld",
+      "predicate": "develops",
+      "object": "reusable_launch_vehicle",
+      "type": "POSITIVE",
+      "gold_doc": "doc_pld_miura5_spec",
+      "retrieved_rank": 1
+    },
+    {
+      "prop_id": "P20_CROSS_RFA_ORBEX",
+      "entity": "rfa",
+      "predicate": "develops",
+      "object": "rfa_one",
+      "type": "POSITIVE",
+      "gold_doc": "doc_rfa_one_spec",
+      "retrieved_rank": 1
+    }
+  ]
+}

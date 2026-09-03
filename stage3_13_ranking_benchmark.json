@@ -1,0 +1,175 @@
+{
+  "benchmark_execution_timestamp": "2026-09-02T23:29:55.210001",
+  "baseline_metrics": {
+    "r1": 0.333,
+    "r3": 0.8,
+    "r5": 0.867,
+    "r10": 1.0,
+    "mrr": 0.558
+  },
+  "optimized_metrics": {
+    "recall_at_1": 0.467,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "mrr": 0.689
+  },
+  "failure_attribution": {
+    "dense_retrieval_failures": 0,
+    "bm25_retrieval_failures": 0,
+    "rrf_ranking_failures": 0,
+    "reranker_failures": 0,
+    "semantic_false_positives": 0
+  },
+  "safety_metrics": {
+    "cross_entity_verified_claims": 0,
+    "temporal_false_support": 0,
+    "stale_evidence_accepted": 0,
+    "redirect_mismatch_claims": 0,
+    "invalid_provenance": 0,
+    "orphan_chunks": 0,
+    "llm_induced_graph_mutations": 0
+  },
+  "items": [
+    {
+      "prop_id": "P01_PLD_REUSABLE",
+      "entity": "pld",
+      "gold_doc": "doc_pld_miura5_spec",
+      "type": "POSITIVE",
+      "optimized_rank": 1
+    },
+    {
+      "prop_id": "P02_PLD_FINANCING",
+      "entity": "pld",
+      "gold_doc": "doc_pld_eib_finance",
+      "type": "POSITIVE",
+      "optimized_rank": 2
+    },
+    {
+      "prop_id": "P03_PLD_ESA_BOOST",
+      "entity": "pld",
+      "gold_doc": "doc_pld_esa_boost",
+      "type": "POSITIVE",
+      "optimized_rank": 3
+    },
+    {
+      "prop_id": "P04_PLD_OPERATIONAL",
+      "entity": "pld",
+      "gold_doc": null,
+      "type": "HARD_NEGATIVE",
+      "optimized_rank": "NOT_RETRIEVED"
+    },
+    {
+      "prop_id": "P05_ISAR_SPECTRUM",
+      "entity": "isar",
+      "gold_doc": "doc_isar_spectrum_overview",
+      "type": "POSITIVE",
+      "optimized_rank": 1
+    },
+    {
+      "prop_id": "P06_ISAR_FACILITY",
+      "entity": "isar",
+      "gold_doc": "doc_isar_prod_facility",
+      "type": "POSITIVE",
+      "optimized_rank": 3
+    },
+    {
+      "prop_id": "P07_ISAR_MAIDEN",
+      "entity": "isar",
+      "gold_doc": "doc_isar_news_maiden",
+      "type": "POSITIVE",
+      "optimized_rank": 3
+    },
+    {
+      "prop_id": "P08_ISAR_REUSABLE",
+      "entity": "isar",
+      "gold_doc": null,
+      "type": "HARD_NEGATIVE",
+      "optimized_rank": "NOT_RETRIEVED"
+    },
+    {
+      "prop_id": "P09_RFA_ONE",
+      "entity": "rfa",
+      "gold_doc": "doc_rfa_one_spec",
+      "type": "POSITIVE",
+      "optimized_rank": 1
+    },
+    {
+      "prop_id": "P10_RFA_HOTFIRE",
+      "entity": "rfa",
+      "gold_doc": "doc_rfa_hotfire",
+      "type": "POSITIVE",
+      "optimized_rank": 3
+    },
+    {
+      "prop_id": "P11_RFA_STATUS",
+      "entity": "rfa",
+      "gold_doc": "doc_rfa_euro_news",
+      "type": "POSITIVE",
+      "optimized_rank": 2
+    },
+    {
+      "prop_id": "P12_RFA_REUSABLE",
+      "entity": "rfa",
+      "gold_doc": null,
+      "type": "HARD_NEGATIVE",
+      "optimized_rank": "NOT_RETRIEVED"
+    },
+    {
+      "prop_id": "P13_ORBEX_PRIME",
+      "entity": "orbex",
+      "gold_doc": "doc_orbex_prime_spec",
+      "type": "POSITIVE",
+      "optimized_rank": 1
+    },
+    {
+      "prop_id": "P14_ORBEX_SPACEPORT",
+      "entity": "orbex",
+      "gold_doc": "doc_orbex_spaceport",
+      "type": "POSITIVE",
+      "optimized_rank": 2
+    },
+    {
+      "prop_id": "P15_ORBEX_REUSABLE",
+      "entity": "orbex",
+      "gold_doc": null,
+      "type": "HARD_NEGATIVE",
+      "optimized_rank": "NOT_RETRIEVED"
+    },
+    {
+      "prop_id": "P16_MAIA_REUSABLE",
+      "entity": "maia",
+      "gold_doc": "doc_maiaspace_reusable",
+      "type": "POSITIVE",
+      "optimized_rank": 1
+    },
+    {
+      "prop_id": "P17_MAIA_COLIBRI",
+      "entity": "maia",
+      "gold_doc": "doc_maiaspace_colibri_test",
+      "type": "POSITIVE",
+      "optimized_rank": 2
+    },
+    {
+      "prop_id": "P18_MAIA_REDIRECT",
+      "entity": "maia",
+      "gold_doc": null,
+      "type": "HARD_NEGATIVE",
+      "optimized_rank": "NOT_RETRIEVED"
+    },
+    {
+      "prop_id": "P19_CROSS_PLD_ISAR",
+      "entity": "pld",
+      "gold_doc": "doc_pld_miura5_spec",
+      "type": "POSITIVE",
+      "optimized_rank": 1
+    },
+    {
+      "prop_id": "P20_CROSS_RFA_ORBEX",
+      "entity": "rfa",
+      "gold_doc": "doc_rfa_one_spec",
+      "type": "POSITIVE",
+      "optimized_rank": 1
+    }
+  ]
+}

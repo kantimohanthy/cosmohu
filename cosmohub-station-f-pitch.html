@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="CosmoHub — an early-stage concept for a connected intelligence layer for the global space ecosystem.">
+<title>CosmoHub — Pitch Deck</title>
+<style>
+:root{--bg:#05070b;--panel:#0b1018;--panel2:#0f1622;--line:#202b3a;--text:#f3f6fb;--muted:#8793a6;--amber:#ffb31a;--cyan:#42e8cf;--mono:"SFMono-Regular",Consolas,"Liberation Mono",monospace;--sans:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;background:var(--bg);color:var(--text);font-family:var(--sans);overflow:hidden}
+button{font:inherit}.deck{height:100vh;position:relative}.slide{position:absolute;inset:0;display:none;padding:clamp(28px,5vw,72px);overflow:auto;background:radial-gradient(circle at 80% 15%,rgba(66,232,207,.06),transparent 30%),linear-gradient(180deg,#070a0f,#05070b)}.slide.active{display:flex;flex-direction:column}
+.top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:clamp(28px,5vh,58px);font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--muted)}.brand{color:var(--text);font-weight:800}.signal{color:var(--cyan)}
+.content{width:min(1180px,100%);margin:auto;position:relative;z-index:2}.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-bottom:18px}
+h1{font-size:clamp(42px,6vw,84px);line-height:.98;letter-spacing:-.055em;max-width:1000px}h2{font-size:clamp(32px,4.5vw,64px);line-height:1.02;letter-spacing:-.045em;max-width:1000px}.accent{color:var(--amber)}.cyan{color:var(--cyan)}
+.lead{font-size:clamp(17px,2vw,23px);line-height:1.55;color:#aeb8c7;max-width:820px;margin-top:26px}.small{font-family:var(--mono);font-size:12px;color:var(--muted);line-height:1.6}
+.grid3,.grid2{display:grid;gap:16px;margin-top:38px}.grid3{grid-template-columns:repeat(3,1fr)}.grid2{grid-template-columns:repeat(2,1fr)}
+.card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);padding:24px;min-height:150px}.card .k{font-family:var(--mono);font-size:11px;color:var(--cyan);text-transform:uppercase;letter-spacing:.08em;margin-bottom:13px}.card h3{font-size:20px;margin-bottom:10px}.card p{font-size:14px;line-height:1.6;color:var(--muted)}
+.flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:38px}.node{border:1px solid var(--line);background:var(--panel);padding:14px 16px;font-family:var(--mono);font-size:12px}.arrow{color:var(--amber)}
+.metric{font-size:clamp(34px,5vw,66px);font-weight:800;letter-spacing:-.05em}.metric-label{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:8px;text-transform:uppercase}
+.quote{border-left:2px solid var(--amber);padding-left:24px;margin-top:34px;font-size:clamp(22px,3vw,38px);line-height:1.25;max-width:900px}
+.matrix{margin-top:36px;border:1px solid var(--line)}.row{display:grid;grid-template-columns:180px 1fr;border-bottom:1px solid var(--line)}.row:last-child{border-bottom:0}.row div{padding:15px 18px}.row div:first-child{font-family:var(--mono);font-size:11px;color:var(--cyan);border-right:1px solid var(--line);text-transform:uppercase}.row div:last-child{color:#b7c0ce;font-size:14px}
+.stage{display:flex;gap:14px;margin-top:38px;align-items:stretch}.stage .card{flex:1}.stage-num{font-family:var(--mono);color:var(--amber);font-size:11px;margin-bottom:12px}
+.ask{border:1px solid var(--amber);background:rgba(255,179,26,.05);padding:28px;margin-top:34px;max-width:900px}.ask strong{color:var(--amber)}
+.nav{position:fixed;z-index:20;bottom:20px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:12px;background:rgba(5,7,11,.9);border:1px solid var(--line);padding:8px}.nav button{background:var(--panel);border:1px solid var(--line);color:var(--text);padding:9px 14px;cursor:pointer;font-family:var(--mono);font-size:11px}.nav button:hover{border-color:var(--amber);color:var(--amber)}#count{font-family:var(--mono);font-size:11px;color:var(--muted);min-width:62px;text-align:center}
+.progress{position:fixed;left:0;bottom:0;height:2px;background:var(--amber);z-index:30;transition:width .25s}
+@media(max-width:760px){.grid3,.grid2,.stage{grid-template-columns:1fr;display:grid}.row{grid-template-columns:110px 1fr}.slide{padding-bottom:90px}.top{margin-bottom:30px}}
+</style>
+</head>
+<body>
+<div class="deck">
+
+<section class="slide active">
+<div class="top"><span class="brand">COSMOHUB // VISION DECK</span><span class="signal">EARLY-STAGE CONCEPT</span></div>
+<div class="content">
+<div class="eyebrow">The intelligence layer for the space ecosystem</div>
+<h1>Know what is happening in <span class="accent">space.</span><br>Know where you fit.</h1>
+<p class="lead">CosmoHub is an early-stage platform concept for connecting fragmented space knowledge, research, organizations, opportunities, projects, and talent through one structured intelligence layer.</p>
+<div class="flow"><span class="node">NEWS</span><span class="arrow">→</span><span class="node">RESEARCH</span><span class="arrow">→</span><span class="node">KNOWLEDGE GRAPH</span><span class="arrow">→</span><span class="node">OPPORTUNITIES</span><span class="arrow">→</span><span class="node">PEOPLE</span></div>
+</div></section>
+
+<section class="slide">
+<div class="top"><span class="brand">COSMOHUB // 01</span><span>THE GAP</span></div>
+<div class="content">
+<div class="eyebrow">The problem</div><h2>The space economy is expanding.<br><span class="accent">Its information layer is fragmented.</span></h2>
+<div class="grid3">
+<div class="card"><div class="k">Discovery</div><h3>Knowledge is scattered</h3><p>Research, mission updates, university activity, grants, jobs, communities, and technical learning live across disconnected systems.</p></div>
+<div class="card"><div class="k">Navigation</div><h3>Entry paths are unclear</h3><p>Students and early-career talent can find information, but struggle to understand which skills, projects, institutions, and opportunities connect.</p></div>
+<div class="card"><div class="k">Institutions</div><h3>Signals are hard to map</h3><p>Organizations publish valuable information, but it is rarely structured into a connected view of the wider ecosystem.</p></div>
+</div>
+<div class="quote">The problem is not a lack of space information. It is a lack of <span class="cyan">context, structure, and connection.</span></div>
+</div></section>
+
+<section class="slide">
+<div class="top"><span class="brand">COSMOHUB // 02</span><span>PRODUCT THESIS</span></div>
+<div class="content">
+<div class="eyebrow">The thesis</div><h2>Build a <span class="accent">space knowledge graph</span>, then make it useful.</h2>
+<p class="lead">CosmoHub aims to organize the ecosystem around entities and relationships rather than isolated pages and feeds.</p>
+<div class="grid3">
+<div class="card"><div class="k">Entities</div><h3>What exists?</h3><p>People, universities, companies, labs, missions, technologies, papers, grants, projects, jobs, and learning resources.</p></div>
+<div class="card"><div class="k">Relationships</div><h3>How are they connected?</h3><p>Who researches what, which skills map to which missions, where opportunities originate, and which institutions shape each domain.</p></div>
+<div class="card"><div class="k">Intelligence</div><h3>What should I do next?</h3><p>Turn the graph into discovery, personalized pathways, research navigation, opportunity matching, and ecosystem intelligence.</p></div>
+</div>
+</div></section>
+
+<section class="slide">
+<div class="top"><span class="brand">COSMOHUB // 03</span><span>PRODUCT</span></div>
+<div class="content">
+<div class="eyebrow">One product, multiple entry points</div><h2>A terminal for navigating the <span class="accent">space ecosystem.</span></h2>
+<div class="grid3">
+<div class="card"><div class="k">Space Intelligence</div><h3>Follow the signal</h3><p>Trusted news, research activity, mission developments, university updates, and ecosystem events organized by domain.</p></div>
+<div class="card"><div class="k">Discovery Graph</div><h3>Explore relationships</h3><p>Navigate from a technology to relevant papers, institutions, people, projects, companies, and opportunities.</p></div>
+<div class="card"><div class="k">Career Navigation</div><h3>Find a pathway</h3><p>Map interests and skills to learning tracks, projects, fellowships, research groups, and roles.</p></div>
+<div class="card"><div class="k">Research Layer</div><h3>Surface new work</h3><p>Make university and laboratory research easier to discover across institutional boundaries.</p></div>
+<div class="card"><div class="k">Project Layer</div><h3>Build proof of work</h3><p>Connect learning to technical projects and public portfolios rather than stopping at passive content consumption.</p></div>
+<div class="card"><div class="k">AI Interface</div><h3>Query the ecosystem</h3><p>Long-term: ask natural-language questions over the graph and receive grounded, source-linked answers.</p></div>
+</div>
+</div></section>
+
+<section class="slide">
+<div class="top"><span class="brand">COSMOHUB // 04</span><span>WHY NOW</span></div>
+<div class="content">
+<div class="eyebrow">Why this becomes possible now</div><h2>More space activity creates more information.<br><span class="accent">AI makes that information navigable.</span></h2>
+<div class="grid3">
+<div class="card"><div class="k">Signal Growth</div><h3>More actors</h3><p>Commercial space, national programs, universities, startups, and open research are generating an expanding volume of public signals.</p></div>
+<div class="card"><div class="k">Data Infrastructure</div><h3>More machine-readable sources</h3><p>APIs, RSS, research repositories, public datasets, and structured feeds make aggregation increasingly feasible.</p></div>
+<div class="card"><div class="k">AI + Graphs</div><h3>Better synthesis</h3><p>Modern language models and knowledge graphs can help classify, connect, retrieve, and explain complex ecosystem information.</p></div>
+</div>
+<div class="quote">CosmoHub's opportunity is not to create more content. It is to build the <span class="cyan">navigation layer above existing information.</span></div>
+</div></section>
+
+<section class="slide">
+<div class="top"><span class="brand">COSMOHUB // 05</span><span>USERS</span></div>
+<div class="content">
+<div class="eyebrow">Who it serves</div><h2>Start with the people who feel the fragmentation <span class="accent">most.</span></h2>
+<div class="matrix">
+<div class="row"><div>Learners</div><div>Discover domains, understand pathways, find projects, and move from curiosity toward credible proof of work.</div></div>
+<div class="row"><div>Researchers</div><div>Discover adjacent work, institutions, calls, collaborators, and relevant ecosystem activity.</div></div>
+<div class="row"><div>Universities</div><div>Surface programs, research groups, opportunities, and talent to a specialized audience.</div></div>
+<div class="row"><div>Companies</div><div>Long-term: discover relevant talent, research, technologies, and ecosystem signals.</div></div>
+<div class="row"><div>Communities</div><div>Connect fragmented events, projects, mentors, and local ecosystems into a broader network.</div></div>
+</div>
+</div></section>
+
+<section class="slide">
+<div class="top"><span class="brand">COSMOHUB // 06</span><span>BUSINESS MODEL</span></div>
+<div class="content">
+<div class="eyebrow">Monetization hypothesis</div><h2>Build utility first.<br><span class="accent">Monetize the intelligence and network layers.</span></h2>
+<div class="grid2">
+<div class="card"><div class="k">Individual</div><h3>Premium intelligence</h3><p>Advanced alerts, saved graphs, personalized tracking, AI research workflows, and professional discovery tools.</p></div>
+<div class="card"><div class="k">Institutional</div><h3>University and organization profiles</h3><p>Enhanced discovery, opportunity distribution, ecosystem analytics, and specialized institutional workspaces.</p></div>
+<div class="card"><div class="k">Talent</div><h3>Matching infrastructure</h3><p>Long-term revenue from qualified introductions and recruiting workflows once sufficient supply and demand exist.</p></div>
+<div class="card"><div class="k">Data</div><h3>Intelligence products</h3><p>Curated datasets, APIs, dashboards, and sector intelligence for organizations that need structured ecosystem visibility.</p></div>
+</div>
+<p class="small" style="margin-top:20px">These are business-model hypotheses to validate; they are not presented as existing revenue streams.</p>
+</div></section>
+
+<section class="slide">
+<div class="top"><span class="brand">COSMOHUB // 07</span><span>GO-TO-MARKET</span></div>
+<div class="content">
+<div class="eyebrow">Start narrow, earn expansion</div><h2>Do not build the whole space economy on day one.</h2>
+<div class="stage">
+<div class="card"><div class="stage-num">01 // VALIDATE</div><h3>Space intelligence feed</h3><p>Aggregate high-quality public signals and test whether a focused audience returns for structured discovery.</p></div>
+<div class="card"><div class="stage-num">02 // CONNECT</div><h3>Knowledge graph</h3><p>Link the highest-value entities and topics based on observed user behavior rather than speculative breadth.</p></div>
+<div class="card"><div class="stage-num">03 // PERSONALIZE</div><h3>Paths and opportunities</h3><p>Add profiles, saved interests, alerts, project discovery, and opportunity matching.</p></div>
+<div class="card"><div class="stage-num">04 // SCALE</div><h3>Institutional network</h3><p>Introduce organization tools, APIs, analytics, and deeper workflows after demonstrating repeated user value.</p></div>
+</div>
+</div></section>
+
+<section class="slide">
+<div class="top"><span class="brand">COSMOHUB // 08</span><span>MOAT</span></div>
+<div class="content">
+<div class="eyebrow">What could become defensible</div><h2>The interface is easy to copy.<br><span class="accent">The connected data layer is not.</span></h2>
+<div class="grid3">
+<div class="card"><div class="k">Ontology</div><h3>Domain-specific structure</h3><p>A continuously refined model of how space technologies, institutions, research, people, projects, and opportunities relate.</p></div>
+<div class="card"><div class="k">Graph</div><h3>Accumulated relationships</h3><p>The product becomes more useful as verified entities and connections compound over time.</p></div>
+<div class="card"><div class="k">Behavior</div><h3>Intent signals</h3><p>With user consent, discovery and interaction patterns can improve recommendations and reveal unmet ecosystem needs.</p></div>
+</div>
+<div class="quote">The long-term asset is not the dashboard. It is the <span class="cyan">structured map of the ecosystem beneath it.</span></div>
+</div></section>
+
+<section class="slide">
+<div class="top"><span class="brand">COSMOHUB // 09</span><span>PRE-SEED PLAN</span></div>
+<div class="content">
+<div class="eyebrow">Planned financing requirement</div>
+<h2>€150K to turn a prototype into <span class="accent">evidence.</span></h2>
+<p class="lead">The purpose of the pre-seed round is not to fund an undefined vision. It is to finance approximately 15–18 months of disciplined product and market validation and remove the risks required for a credible seed round.</p>
+<div class="grid3">
+<div class="card"><div class="k">38% // €57K</div><h3>Product & engineering</h3><p>Production product, ingestion pipelines, search, graph architecture, user accounts, personalization, analytics, and core UX.</p></div>
+<div class="card"><div class="k">18% // €27K</div><h3>Data, AI & infrastructure</h3><p>Cloud services, databases, graph/vector infrastructure, AI inference, observability, and scalable data processing.</p></div>
+<div class="card"><div class="k">12% // €18K</div><h3>Research & data operations</h3><p>Source mapping, ontology development, classification, data quality, verification, and domain research.</p></div>
+<div class="card"><div class="k">12% // €18K</div><h3>GTM & institutional pilots</h3><p>User interviews, university and ecosystem outreach, pilot deployment, events, and early acquisition experiments.</p></div>
+<div class="card"><div class="k">15% // €22.5K</div><h3>Legal, IP, design & specialists</h3><p>Company and IP foundation, contracts, compliance, accounting, product design, and specialist technical or domain support.</p></div>
+<div class="card"><div class="k">5% // €7.5K</div><h3>Contingency</h3><p>Operational reserve for unexpected infrastructure, legal, data, and execution costs.</p></div>
+</div>
+</div></section>
+
+<section class="slide">
+<div class="top"><span class="brand">COSMOHUB // 10</span><span>CAPITAL LOGIC</span></div>
+<div class="content">
+<div class="eyebrow">Funding → capability → evidence</div>
+<h2>Every euro must remove a <span class="accent">specific risk.</span></h2>
+<div class="matrix">
+<div class="row"><div>€57K Product</div><div>Build a production-grade Space Intelligence MVP → prove that users repeatedly use a defined workflow.</div></div>
+<div class="row"><div>€27K Data + AI</div><div>Build reliable ingestion and intelligence infrastructure → prove that fresh ecosystem data can be processed at useful quality and scale.</div></div>
+<div class="row"><div>€18K Data Ops</div><div>Develop the initial ontology and verified entity relationships → create the foundation of a defensible structured dataset.</div></div>
+<div class="row"><div>€18K GTM</div><div>Run focused distribution and institutional experiments → identify who needs the product most and how to reach them repeatedly.</div></div>
+<div class="row"><div>€22.5K Foundation</div><div>Establish clean IP, contracts, company operations, design quality, and specialist support → make the company more execution- and investment-ready.</div></div>
+</div>
+<div class="quote">We are not raising €150K to “build CosmoHub.” We are raising it to convert <span class="cyan">product, data, engagement, distribution, and commercial risk into measurable evidence.</span></div>
+</div></section>
+
+<section class="slide">
+<div class="top"><span class="brand">COSMOHUB // 11</span><span>18-MONTH MILESTONES</span></div>
+<div class="content">
+<div class="eyebrow">What the runway must produce</div>
+<h2>Four milestones before the <span class="accent">next round.</span></h2>
+<div class="stage">
+<div class="card"><div class="stage-num">01 // PRODUCT</div><h3>Production MVP</h3><p>Real source ingestion, structured search, personalization, analytics, and an initial useful knowledge graph.</p></div>
+<div class="card"><div class="stage-num">02 // MARKET</div><h3>Repeat usage</h3><p>Target 1,000–3,000 genuinely activated users while measuring cohort retention and recurring product use—not vanity registrations.</p></div>
+<div class="card"><div class="stage-num">03 // INSTITUTIONS</div><h3>3–5 design partners</h3><p>Secure credible pilots or design partnerships with universities, research organizations, communities, or space-sector participants.</p></div>
+<div class="card"><div class="stage-num">04 // COMMERCIAL</div><h3>Willingness to pay</h3><p>Generate first revenue or sufficiently strong pilot conversion evidence around one clearly defined paid workflow.</p></div>
+</div>
+<p class="small" style="margin-top:22px">These are target milestones for validation, not claims of current traction.</p>
+</div></section>
+
+<section class="slide">
+<div class="top"><span class="brand">COSMOHUB // 12</span><span>SEED INFLECTION</span></div>
+<div class="content">
+<div class="eyebrow">What improves for the next financing round</div>
+<h2>The next round should be triggered by <span class="accent">de-risking</span>—not by running out of cash.</h2>
+<div class="grid3">
+<div class="card"><div class="k">Product Risk</div><h3>From prototype to utility</h3><p>Evidence that a production product solves a recurring workflow rather than merely demonstrating an attractive concept.</p></div>
+<div class="card"><div class="k">Engagement Risk</div><h3>From sign-ups to retention</h3><p>Cohort data showing that a meaningful segment repeatedly returns and receives ongoing value.</p></div>
+<div class="card"><div class="k">Commercial Risk</div><h3>From interest to payment</h3><p>Initial revenue, paid pilots, or strong conversion evidence showing that a defined customer values the product economically.</p></div>
+<div class="card"><div class="k">Distribution Risk</div><h3>From outreach to a channel</h3><p>Evidence of at least one repeatable path for acquiring users or institutional partners without purely founder-driven outreach.</p></div>
+<div class="card"><div class="k">Data Risk</div><h3>From feeds to an asset</h3><p>A reliable ingestion and ontology layer whose structured relationships improve as the product is used.</p></div>
+<div class="card"><div class="k">Seed Story</div><h3>Scale what works</h3><p>The seed round then finances expansion of a validated engine instead of continued exploration of an unproven thesis.</p></div>
+</div>
+</div></section>
+
+<section class="slide">
+<div class="top"><span class="brand">COSMOHUB // 13</span><span>STATUS + STATION F ASK</span></div>
+<div class="content">
+<div class="eyebrow">Where CosmoHub is today</div>
+<h2>Prototype built.<br><span class="accent">Now validate the problem.</span></h2>
+<div class="grid3">
+<div class="card"><div class="k">Current</div><h3>Public concept prototype</h3><p>A working web prototype demonstrates the terminal interface, graph concept, intelligence-feed direction, and evolving product thesis.</p></div>
+<div class="card"><div class="k">Immediate Next Step</div><h3>Real data + user evidence</h3><p>Connect trusted public sources, interview target users, measure repeated usage, and identify the narrowest indispensable workflow.</p></div>
+<div class="card"><div class="k">Financing Roadmap</div><h3>€150K pre-seed</h3><p>Preparing a disciplined 15–18 month validation round tied directly to product, retention, institutional, and commercial milestones.</p></div>
+</div>
+<div class="ask"><strong>THE STATION F ASK //</strong> Access to the ecosystem, rigorous mentorship, introductions to relevant space and research institutions, technical collaborators, and early design partners who can help us validate the narrowest high-value problem first.</div>
+</div></section>
+
+<section class="slide">
+<div class="top"><span class="brand">COSMOHUB // 14</span><span>MISSION</span></div>
+<div class="content">
+<div class="eyebrow">The long-term direction</div><h1>The space economy needs a <span class="accent">map.</span></h1>
+<p class="lead">CosmoHub's ambition is to become the intelligence and discovery layer that helps people understand the space ecosystem, find where they belong, and act on what they discover.</p>
+<div class="quote">From fragmented information<br>to connected intelligence.</div>
+<p class="small" style="margin-top:34px">COSMOHUB // BUILDING IN PUBLIC</p>
+</div></section>
+
+</div>
+<div class="nav"><button onclick="move(-1)">← PREV</button><span id="count">01 / 11</span><button onclick="move(1)">NEXT →</button></div>
+<div class="progress" id="progress"></div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];let current=0;
+function show(i){current=(i+slides.length)%slides.length;slides.forEach((s,n)=>s.classList.toggle('active',n===current));document.getElementById('count').textContent=String(current+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0');document.getElementById('progress').style.width=((current+1)/slides.length*100)+'%'}
+function move(d){show(current+d)}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')move(1);if(e.key==='ArrowLeft')move(-1);if(e.key==='Home')show(0);if(e.key==='End')show(slides.length-1)});
+show(0);
+</script>
+</body>
+</html>

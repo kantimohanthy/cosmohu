@@ -1,0 +1,12 @@
+{
+  "benchmark_execution_timestamp": "2026-09-02T23:23:49.654898",
+  "total_documents": 15,
+  "total_chunks": 15,
+  "benchmark_query_count": 15,
+  "total_candidate_passages": 63,
+  "total_entailed_passages": 21,
+  "total_rejected_passages": 42,
+  "total_supported_propositions": 11,
+  "total_insufficient_propositions": 10,
+  "corroborated_propositions": 9
+}

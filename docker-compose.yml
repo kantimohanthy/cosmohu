@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: cosmohub-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: cosmohub_db
+      POSTGRES_USER: cosmohub
+      POSTGRES_PASSWORD: cosmohub_secret
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./infrastructure/docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  api:
+    build:
+      context: .
+      dockerfile: ./infrastructure/docker/Dockerfile.api
+    container_name: cosmohub-api
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://cosmohub:cosmohub_secret@postgres:5432/cosmohub_db
+      - EMBEDDING_PROVIDER=local
+      - ENV=production
+    depends_on:
+      - postgres
+
+  web:
+    build:
+      context: .
+      dockerfile: ./infrastructure/docker/Dockerfile.web
+    container_name: cosmohub-web
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1
+    depends_on:
+      - api
+
+volumes:
+  postgres_data:

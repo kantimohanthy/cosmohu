@@ -1,0 +1,9 @@
+company_name,country,sector,funding_raised_eur_m,founded_year,flagship_vehicle,payload_capacity_kg,status,key_investors,description
+Isar Aerospace,Germany,Small Launch,310,2018,Spectrum,1000,Testing,"HV Capital, Porsche SE, Earlybird, Lakestar",Developer of two-stage Spectrum rocket targeting flexible satellite deployment to low Earth orbit from Andøya Spaceport.
+Rocket Factory Augsburg (RFA),Germany,Small Launch,85,2018,RFA ONE,1350,Testing,"OHB SE, KKR, Apollo",Commercial launch provider developing RFA ONE rocket using staged combustion engines and high-volume production.
+MaiaSpace,France,Medium Launch,125,2022,Maia,1500,Development,"ArianeGroup, CNES",Subsidiary of ArianeGroup building re-usable mini-launcher powered by Prometheus engine and bio-methane fuel.
+PLD Space,Spain,Small Launch,140,2011,Miura 5,500,Flight Tested,"CDTI, Aciturri, Arcano Partners",Developer of Miura 1 suborbital rocket and Miura 5 orbital satellite launcher based in Elche Spain.
+Orbex,United Kingdom,Small Launch,102,2015,Prime,200,Testing,"BGF, Octopus Ventures, Scottish National Investment Bank",Scottish micro-launch developer building carbon-fiber orbital rocket Prime operating on bio-propane from Sutherland Spaceport.
+HyImpulse,Germany,Hybrid Launch,45,2018,SL1,500,Suborbital Flight,"e22, Rudolf Wild, EU Innovation Fund",DLR spinoff developing hybrid rocket engine technology using paraffin wax and liquid oxygen for SL1 launcher.
+Avio,Italy,Launch Systems,450,1912,Vega C / Vega E,2300,Operational,"Italian Space Agency, ESA",Publicly listed Italian aerospace manufacturer responsible for Vega C launcher family and P120C solid rocket booster.
+ArianeGroup,France / Germany,Heavy Launch,1200,2015,Ariane 6,21600,Operational,"Airbus, Safran, ESA",Lead industrial contractor for Ariane 6 heavy launcher providing guaranteed independent access to space for Europe.

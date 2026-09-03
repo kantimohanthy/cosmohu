@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CosmoHub — Insider Blueprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0d12;
+    --panel:#12161f;
+    --panel-alt:#171c27;
+    --border:#232838;
+    --amber:#ffb627;
+    --amber-dim:#8a6a2a;
+    --cyan:#4ce0c6;
+    --cyan-dim:#2f6b60;
+    --text:#eceff3;
+    --muted:#8891a3;
+    --display:'Space Grotesk',sans-serif;
+    --body:'IBM Plex Sans',sans-serif;
+    --mono:'IBM Plex Mono',monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg); color:var(--text); font-family:var(--body); line-height:1.55; -webkit-font-smoothing:antialiased;}
+  @media (prefers-reduced-motion: reduce){ *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; scroll-behavior:auto !important;} }
+  a{color:inherit;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  ::selection{background:var(--amber); color:#0a0d12;}
+
+  /* Internal banner */
+  .internal-banner{
+    background:repeating-linear-gradient(135deg, #1a1300, #1a1300 10px, #100c00 10px, #100c00 20px);
+    border-bottom:1px solid var(--amber-dim);
+    text-align:center; padding:7px 12px;
+    font-family:var(--mono); font-size:11px; letter-spacing:0.1em;
+    color:var(--amber);
+  }
+
+  .topbar{position:sticky; top:0; z-index:50; background:rgba(10,13,18,0.94); backdrop-filter:blur(8px); border-bottom:1px solid var(--border);}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:18px 32px; max-width:1180px; margin:0 auto; flex-wrap:wrap; gap:12px;}
+  .logo{font-family:var(--mono); font-weight:600; font-size:15px; letter-spacing:0.06em; display:flex; align-items:center; gap:8px;}
+  .logo .dot{width:7px; height:7px; background:var(--amber); border-radius:50%; box-shadow:0 0 8px var(--amber);}
+  .logo small{color:var(--muted); font-weight:400; font-size:11px; margin-left:4px;}
+  .navlinks{display:flex; gap:26px; font-size:12.5px; color:var(--muted); font-family:var(--mono); flex-wrap:wrap;}
+  .navlinks a{text-decoration:none; transition:color .2s;}
+  .navlinks a:hover{color:var(--text);}
+  @media (max-width:900px){ .navlinks{display:none;} }
+
+  .eyebrow{font-family:var(--mono); color:var(--amber); font-size:12px; letter-spacing:0.15em; text-transform:uppercase; display:flex; align-items:center; gap:10px; margin-bottom:18px;}
+  .eyebrow::before{content:''; width:22px; height:1px; background:var(--amber);}
+  .eyebrow.cy{color:var(--cyan);}
+  .eyebrow.cy::before{background:var(--cyan);}
+
+  h1{font-family:var(--display); font-weight:700; font-size:clamp(32px,4.6vw,54px); line-height:1.08; letter-spacing:-0.01em; margin-bottom:22px;}
+  h1 .accent{color:var(--amber);}
+  h2{font-family:var(--display); font-weight:600; font-size:clamp(24px,3vw,32px); line-height:1.15; margin-bottom:14px;}
+  h3{font-family:var(--display); font-weight:600; font-size:18px; margin-bottom:8px;}
+  p{color:var(--muted); font-size:15px;}
+  p b{color:var(--text); font-weight:500;}
+
+  .hero{padding:80px 0 70px; border-bottom:1px solid var(--border);}
+  .hero-sub{font-size:16.5px; color:var(--muted); max-width:680px; margin-bottom:14px;}
+  .hero-tags{display:flex; gap:10px; flex-wrap:wrap; margin-top:24px;}
+  .hero-tags span{font-family:var(--mono); font-size:11px; color:var(--cyan); border:1px solid var(--border); padding:6px 10px; letter-spacing:0.03em;}
+
+  .section{padding:80px 0; border-bottom:1px solid var(--border);}
+  .section-head{max-width:680px; margin-bottom:44px;}
+
+  /* Ontology graph */
+  .graph-panel{background:var(--panel); border:1px solid var(--border); padding:20px;}
+  .graph-panel-head{display:flex; justify-content:space-between; align-items:center; font-family:var(--mono); font-size:11px; color:var(--muted); letter-spacing:0.06em; margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid var(--border);}
+  .graph-panel-head span.tag{color:var(--amber);}
+  .onto-svg{width:100%; height:auto; display:block;}
+  .onto-node circle{fill:var(--panel-alt); stroke:var(--amber-dim); stroke-width:1.4;}
+  .onto-node.core circle{stroke:var(--amber); fill:#1c1508;}
+  .onto-node text{font-family:var(--mono); font-size:11px; fill:var(--text); text-anchor:middle;}
+  .onto-node .sub{fill:var(--muted); font-size:8.5px;}
+  .onto-edge{stroke:var(--border); stroke-width:1.2; fill:none;}
+  .onto-edge-label{font-family:var(--mono); font-size:8px; fill:var(--muted); text-anchor:middle;}
+
+  /* Link table */
+  .link-table{width:100%; border-collapse:collapse; margin-top:24px; font-family:var(--mono); font-size:12.5px;}
+  .link-table th{text-align:left; color:var(--muted); font-weight:500; letter-spacing:0.05em; padding:10px 14px; border-bottom:1px solid var(--border); font-size:10.5px; text-transform:uppercase;}
+  .link-table td{padding:12px 14px; border-bottom:1px solid var(--border); color:var(--text);}
+  .link-table td.rel{color:var(--amber);}
+  .link-table tr:hover td{background:var(--panel);}
+
+  /* Pipeline */
+  .pipeline{display:flex; align-items:stretch; gap:0; overflow-x:auto; margin-top:8px;}
+  .pipe-stage{
+    flex:1; min-width:170px; background:var(--panel); border:1px solid var(--border);
+    padding:22px 18px; position:relative;
+  }
+  .pipe-stage + .pipe-stage{border-left:none;}
+  .pipe-num{font-family:var(--mono); font-size:11px; color:var(--amber-dim); margin-bottom:10px; letter-spacing:0.08em;}
+  .pipe-stage h3{font-size:15.5px; margin-bottom:8px;}
+  .pipe-stage p{font-size:12.5px;}
+  .pipe-arrow{
+    display:flex; align-items:center; justify-content:center; color:var(--amber);
+    font-family:var(--mono); font-size:16px; padding:0 4px; background:var(--panel-alt);
+    border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+  }
+
+  /* App / analytics grid */
+  .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+  @media (max-width:900px){.grid-3{grid-template-columns:1fr;}}
+  .term-card{background:var(--panel); border:1px solid var(--border);}
+  .term-head{display:flex; justify-content:space-between; padding:11px 15px; border-bottom:1px solid var(--border); font-family:var(--mono); font-size:10.5px; color:var(--muted); letter-spacing:0.07em;}
+  .term-head .code{color:var(--cyan);}
+  .term-body{padding:20px 18px 22px;}
+  .term-body h3{font-size:16.5px;}
+  .term-body p{font-size:13.5px;}
+
+  .analytics-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin-top:8px;}
+  @media (max-width:760px){.analytics-grid{grid-template-columns:1fr;}}
+  .an-item{background:var(--bg); padding:24px 22px;}
+  .an-item .mark{font-family:var(--mono); color:var(--cyan); font-size:11px; margin-bottom:8px; letter-spacing:0.05em;}
+  .an-item h3{font-size:15.5px;}
+  .an-item p{font-size:13px;}
+
+  /* Workflow steps */
+  .steps{counter-reset:step; margin-top:8px;}
+  .step{display:flex; gap:20px; padding:22px 0; border-top:1px solid var(--border);}
+  .step:last-child{border-bottom:1px solid var(--border);}
+  .step-num{font-family:var(--mono); color:var(--amber); font-size:20px; min-width:46px;}
+  .step-body h3{font-size:16px; margin-bottom:6px;}
+  .step-body p{font-size:13.5px; max-width:640px;}
+
+  /* Roadmap timeline */
+  .roadmap{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin-top:8px;}
+  @media (max-width:900px){.roadmap{grid-template-columns:1fr;}}
+  .rm-phase{background:var(--bg); padding:26px 20px;}
+  .rm-phase .rm-year{font-family:var(--mono); font-size:11px; color:var(--amber-dim); letter-spacing:0.08em; margin-bottom:6px;}
+  .rm-phase h3{font-size:16.5px; margin-bottom:10px;}
+  .rm-phase ul{list-style:none; display:flex; flex-direction:column; gap:6px;}
+  .rm-phase li{font-size:12.5px; color:var(--muted); padding-left:14px; position:relative;}
+  .rm-phase li::before{content:'—'; position:absolute; left:0; color:var(--cyan);}
+
+  /* Team roles */
+  .role-row{display:grid; grid-template-columns:220px 1fr; gap:20px; padding:18px 0; border-top:1px solid var(--border); align-items:baseline;}
+  .role-row:last-child{border-bottom:1px solid var(--border);}
+  @media (max-width:640px){.role-row{grid-template-columns:1fr; gap:6px;}}
+  .role-row .role-name{font-family:var(--mono); font-size:13px; color:var(--amber);}
+  .role-row p{font-size:13.5px;}
+
+  footer{padding:44px 0;}
+  .foot-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;}
+  .foot-links{display:flex; gap:22px; font-family:var(--mono); font-size:12px; color:var(--muted);}
+  .foot-links a{text-decoration:none;}
+  .foot-links a:hover{color:var(--text);}
+
+  a:focus-visible, button:focus-visible{outline:2px solid var(--cyan); outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<div class="internal-banner">INTERNAL — BUILD DOCUMENTATION FOR THE COSMOHUB TEAM · NOT FOR PUBLIC DISTRIBUTION</div>
+
+<div class="topbar">
+  <div class="nav">
+    <div class="logo"><span class="dot"></span>COSMOHUB <small>/ insider blueprint</small></div>
+    <div class="navlinks">
+      <a href="#model">The Model</a>
+      <a href="#ontology">Ontology</a>
+      <a href="#pipeline">Pipeline</a>
+      <a href="#apps">Applications</a>
+      <a href="#workflow">Workflow</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#roles">Roles</a>
+    </div>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">For the people building cosmohub</div>
+    <h1>The blueprint, not<br>the brochure.</h1>
+    <p class="hero-sub">
+      This is the internal build document for CosmoHub. It lays out the ontology, the data pipeline,
+      the application layer, and the workflows we use to actually build the platform — modeled on how
+      Palantir structured Gotham: the ontology is the product, everything else is an application on top of it.
+    </p>
+    <div class="hero-tags">
+      <span>ONTOLOGY-FIRST</span>
+      <span>OBJECTS · PROPERTIES · LINKS</span>
+      <span>FEDERATED DATA INTEGRATION</span>
+      <span>APPS ON TOP, NOT INSIDE</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="model">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">The model we're following</div>
+      <h2>Structure is the product. Content sits on top.</h2>
+      <p>
+        Palantir's Gotham does not compete on interface — it competes on the Ontology, a layer that unifies
+        data from every available source into objects, properties, and links representing real entities and
+        how they connect. Every application — Graph, Gaia, Dossier — reads from that same layer.
+      </p>
+      <p style="margin-top:12px;">
+        CosmoHub follows the same discipline. The tracks, the ticker, the dashboard — none of them are the
+        product. The product is a continuously enriched graph of the space talent and research ecosystem.
+        Build the graph correctly, and every application becomes easier to ship, not harder.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="ontology">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow cy">The ontology</div>
+      <h2>Objects and links — the schema everything else depends on.</h2>
+      <p>Seven object types, nine core relationships. This is the foundation. Every new data source and every new application maps into this graph — it does not get its own separate table.</p>
+    </div>
+
+    <div class="graph-panel">
+      <div class="graph-panel-head"><span>ONTOLOGY / CORE-GRAPH-V1</span><span class="tag">7 OBJECTS · 9 LINKS</span></div>
+      <svg class="onto-svg" viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg">
+        <!-- edges -->
+        <g class="onto-edge">
+          <line x1="270" y1="300" x2="180" y2="160"></line>
+          <line x1="270" y1="300" x2="180" y2="440"></line>
+          <line x1="270" y1="300" x2="560" y2="170"></line>
+          <line x1="270" y1="300" x2="560" y2="440"></line>
+          <line x1="560" y1="170" x2="560" y2="440"></line>
+          <line x1="560" y1="170" x2="760" y2="230"></line>
+          <line x1="760" y1="230" x2="180" y2="160"></line>
+          <line x1="760" y1="410" x2="180" y2="160"></line>
+          <line x1="180" y1="440" x2="180" y2="440" stroke-dasharray="3,3"></line>
+        </g>
+        <!-- edge labels -->
+        <text class="onto-edge-label" x="200" y="222">studies</text>
+        <text class="onto-edge-label" x="205" y="380">authored</text>
+        <text class="onto-edge-label" x="440" y="220">affiliated with</text>
+        <text class="onto-edge-label" x="440" y="378">applied to</text>
+        <text class="onto-edge-label" x="590" y="305">sponsors</text>
+        <text class="onto-edge-label" x="670" y="185">operates</text>
+        <text class="onto-edge-label" x="460" y="145">requires skills in</text>
+        <text class="onto-edge-label" x="470" y="470">hires from</text>
+
+        <!-- nodes -->
+        <g class="onto-node core" transform="translate(270,300)">
+          <circle r="46"></circle>
+          <text y="-4">PERSON</text>
+          <text class="sub" y="12">enthusiast·student·pro·fellow</text>
+        </g>
+
+        <g class="onto-node" transform="translate(180,160)">
+          <circle r="38"></circle>
+          <text y="-3">TRACK</text>
+          <text class="sub" y="12">subject·level</text>
+        </g>
+
+        <g class="onto-node" transform="translate(180,440)">
+          <circle r="38"></circle>
+          <text y="-3">PUBLICATION</text>
+          <text class="sub" y="12">authors·topic</text>
+        </g>
+
+        <g class="onto-node" transform="translate(560,170)">
+          <circle r="40"></circle>
+          <text y="-3">INSTITUTE</text>
+          <text class="sub" y="12">focus areas</text>
+        </g>
+
+        <g class="onto-node" transform="translate(560,440)">
+          <circle r="40"></circle>
+          <text y="-3">FELLOWSHIP</text>
+          <text class="sub" y="12">eligibility·deadline</text>
+        </g>
+
+        <g class="onto-node" transform="translate(760,230)">
+          <circle r="38"></circle>
+          <text y="-3">MISSION</text>
+          <text class="sub" y="12">orbit·status</text>
+        </g>
+
+        <g class="onto-node" transform="translate(760,410)">
+          <circle r="38"></circle>
+          <text y="-3">COMPANY</text>
+          <text class="sub" y="12">sector·hiring</text>
+        </g>
+      </svg>
+    </div>
+
+    <table class="link-table">
+      <thead>
+        <tr><th>From</th><th>Relationship</th><th>To</th><th>What it enables</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Person</td><td class="rel">studies</td><td>Track</td><td>Skill graph per person</td></tr>
+        <tr><td>Person</td><td class="rel">authored</td><td>Publication</td><td>Research track record</td></tr>
+        <tr><td>Person</td><td class="rel">applied to</td><td>Fellowship</td><td>Application history</td></tr>
+        <tr><td>Person</td><td class="rel">affiliated with</td><td>Institute</td><td>Institutional context</td></tr>
+        <tr><td>Institute</td><td class="rel">sponsors</td><td>Fellowship</td><td>Opening ownership</td></tr>
+        <tr><td>Institute</td><td class="rel">operates</td><td>Mission</td><td>Mission ownership</td></tr>
+        <tr><td>Mission</td><td class="rel">requires skills in</td><td>Track</td><td>Skill-gap detection</td></tr>
+        <tr><td>Company</td><td class="rel">hires from</td><td>Track</td><td>Talent demand signal</td></tr>
+        <tr><td>Publication</td><td class="rel">cites</td><td>Publication</td><td>Research trend detection</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section" id="pipeline">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Data integration</div>
+      <h2>How a new source gets into the ontology.</h2>
+      <p>Federated, not centralized — every source keeps flowing in and enriching the same graph rather than living in its own silo.</p>
+    </div>
+    <div class="pipeline">
+      <div class="pipe-stage">
+        <div class="pipe-num">SOURCE</div>
+        <h3>Raw data</h3>
+        <p>Institute pages, research feeds, fellowship boards, mission databases, user profiles.</p>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-stage">
+        <div class="pipe-num">PARSER</div>
+        <h3>Extraction</h3>
+        <p>A connector extracts entities and relationships from the source's native format.</p>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-stage">
+        <div class="pipe-num">MAPPING</div>
+        <h3>Object mapping</h3>
+        <p>Extracted entities are mapped to existing or new object types and links.</p>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-stage">
+        <div class="pipe-num">ONTOLOGY</div>
+        <h3>Shared graph</h3>
+        <p>Mapped data is promoted into the ontology store — queryable by every application.</p>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-stage">
+        <div class="pipe-num">APPS</div>
+        <h3>Applications</h3>
+        <p>Graph Explorer, Fellowship Match, and every other tool read live from the ontology.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="apps">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow cy">Application layer</div>
+      <h2>Six tools. One shared graph underneath.</h2>
+      <p>None of these own their own data. They are views and actions over the ontology — exactly how Gotham's Graph and Gaia apps work.</p>
+    </div>
+    <div class="grid-3">
+      <div class="term-card">
+        <div class="term-head"><span>APP/01</span><span class="code">CORE</span></div>
+        <div class="term-body"><h3>Graph Explorer</h3><p>Whiteboard-style link analysis — trace how a person, institute, or mission connects to everything else in the ecosystem.</p></div>
+      </div>
+      <div class="term-card">
+        <div class="term-head"><span>APP/02</span><span class="code">MATCHING</span></div>
+        <div class="term-body"><h3>Fellowship Match</h3><p>Surfaces openings a person's profile actually qualifies for, computed from tracked skills and activity.</p></div>
+      </div>
+      <div class="term-card">
+        <div class="term-head"><span>APP/03</span><span class="code">PARTNER-FACING</span></div>
+        <div class="term-body"><h3>Institute Radar</h3><p>Gives partner institutes a live view of qualified, engaged talent active in their research area.</p></div>
+      </div>
+      <div class="term-card">
+        <div class="term-head"><span>APP/04</span><span class="code">GEOSPATIAL</span></div>
+        <div class="term-body"><h3>Mission Tracker</h3><p>A timeline and map view of active and upcoming missions, tied back to operating institutes.</p></div>
+      </div>
+      <div class="term-card">
+        <div class="term-head"><span>APP/05</span><span class="code">SIGNAL</span></div>
+        <div class="term-body"><h3>Research Index</h3><p>Live momentum on tracks and topics, computed from real publication and enrollment velocity.</p></div>
+      </div>
+      <div class="term-card">
+        <div class="term-head"><span>APP/06</span><span class="code">STRATEGY</span></div>
+        <div class="term-body"><h3>Skill Gap Analyzer</h3><p>Compares mission and company skill demand against the talent pool — informs which track to build next.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Analytics</div>
+      <h2>What the graph can compute.</h2>
+    </div>
+    <div class="analytics-grid">
+      <div class="an-item"><div class="mark">01 / CENTRALITY</div><h3>Network centrality</h3><p>Identify the most connected people, institutes, and topics in the graph.</p></div>
+      <div class="an-item"><div class="mark">02 / TRENDS</div><h3>Trend detection</h3><p>Surface rising research areas from real activity, not manual curation.</p></div>
+      <div class="an-item"><div class="mark">03 / MATCHING</div><h3>Talent-to-opportunity</h3><p>Pair people with fellowships and roles based on tracked skills and history.</p></div>
+      <div class="an-item"><div class="mark">04 / GEO</div><h3>Mission mapping</h3><p>Visualize missions and ground systems in geospatial context.</p></div>
+      <div class="an-item"><div class="mark">05 / SCORING</div><h3>Institute engagement</h3><p>Prioritize which institute partnerships are most valuable to deepen next.</p></div>
+      <div class="an-item"><div class="mark">06 / GAPS</div><h3>Skill-gap detection</h3><p>Compare what missions need against what the talent pool currently has.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="workflow">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow cy">Insider workflow</div>
+      <h2>How we onboard a new data source.</h2>
+      <p>Every source — a new institute, a new fellowship board, a new research feed — follows this same path.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body"><h3>Identify the source</h3><p>Confirm what entities it contains and which existing object types they map to — or whether a new object type is needed.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body"><h3>Write the parser</h3><p>Build a connector that extracts entities and relationships from the source's native format into a structured intermediate form.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-body"><h3>Map to the ontology</h3><p>Match extracted fields to object properties and links. Reuse existing types wherever possible — extend the ontology deliberately, not by accident.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-body"><h3>QA against the graph</h3><p>Check for duplicate entities, broken links, and property mismatches before anything reaches production.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <div class="step-body"><h3>Promote to production</h3><p>Once verified, the mapped data becomes queryable by every application — Graph Explorer, Fellowship Match, and everything built after them.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="roadmap">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Ten-year build</div>
+      <h2>From core ontology to the reference layer for the space economy.</h2>
+    </div>
+    <div class="roadmap">
+      <div class="rm-phase">
+        <div class="rm-year">YEAR 1</div>
+        <h3>Foundation</h3>
+        <ul>
+          <li>Core ontology live: Person, Institute, Track, Fellowship</li>
+          <li>First tracks published</li>
+          <li>Landing page + profile system</li>
+          <li>Manual ingestion from initial partner institutes</li>
+        </ul>
+      </div>
+      <div class="rm-phase">
+        <div class="rm-year">YEARS 2–3</div>
+        <h3>Integration</h3>
+        <ul>
+          <li>Automated parsers for research feeds and fellowship boards</li>
+          <li>Fellowship Match and Institute Radar shipped</li>
+          <li>First paid institute partnerships</li>
+        </ul>
+      </div>
+      <div class="rm-phase">
+        <div class="rm-year">YEARS 4–6</div>
+        <h3>Intelligence</h3>
+        <ul>
+          <li>Graph Explorer and full analytics suite live</li>
+          <li>Mission and Company objects added</li>
+          <li>Direct hiring partnerships with aerospace companies</li>
+          <li>Expansion into a global institute network</li>
+        </ul>
+      </div>
+      <div class="rm-phase">
+        <div class="rm-year">YEARS 7–10</div>
+        <h3>Standard</h3>
+        <ul>
+          <li>Reference layer for the global space talent ecosystem</li>
+          <li>Ontology and analytics licensed to institutes and agencies</li>
+          <li>AI-assisted research and fellowship matching</li>
+          <li>Space policy and space-law tracking integrated</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="roles" style="border-bottom:none;">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow cy">Building the team</div>
+      <h2>The roles that grow the ontology.</h2>
+      <p>Content roles matter, but the roles below are what compound the platform's value — they're the ones to prioritize first.</p>
+    </div>
+    <div>
+      <div class="role-row"><div class="role-name">ONTOLOGY DESIGN</div><p>Defines and evolves object types, properties, and links as the platform grows. Owns schema decisions.</p></div>
+      <div class="role-row"><div class="role-name">DATA INTEGRATION</div><p>Builds parsers and connectors for new sources — institutes, research feeds, fellowship boards, mission databases.</p></div>
+      <div class="role-row"><div class="role-name">APPLICATION DEV</div><p>Builds the user-facing tools that read from the ontology: Graph Explorer, Fellowship Match, and what comes after them.</p></div>
+      <div class="role-row"><div class="role-name">INSTITUTE PARTNERSHIPS</div><p>Onboards institutes as both data sources and consumers of the graph — the channel that keeps the ontology fed.</p></div>
+      <div class="role-row"><div class="role-name">TRACK &amp; CONTENT DESIGN</div><p>Builds the learning tracks that sit on top of the ontology — not instead of it.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-row">
+    <div class="logo"><span class="dot"></span>COSMOHUB <small>/ insider blueprint</small></div>
+    <div class="foot-links">
+      <a href="#model">The Model</a>
+      <a href="#ontology">Ontology</a>
+      <a href="#apps">Applications</a>
+      <a href="#roadmap">Roadmap</a>
+    </div>
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted);">Internal build documentation</div>
+  </div>
+</footer>
+
+</body>
+</html>
